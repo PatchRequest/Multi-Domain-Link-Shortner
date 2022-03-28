@@ -122,7 +122,7 @@ class LinkController extends Controller
             // redirect to target
             return redirect($link->target);
         }
-        return redirect("/");
+        return redirect("https://geheim.gg");
 
     }
 
