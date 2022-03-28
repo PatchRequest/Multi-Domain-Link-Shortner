@@ -55,6 +55,10 @@ class LinkController extends Controller
         }
         $fullUrl = "http://" . $domain->domain . "/" . $data['shortcut'];
 
+        $link = Link::where('url', $fullUrl)->first();
+        if($link) {
+            return redirect()->route('Dashboard')->with('error', 'This link already exists');
+        }
         $newLink = new Link();
         $newLink->user_id = auth()->user()->id;
         $newLink->title = $fullUrl;
