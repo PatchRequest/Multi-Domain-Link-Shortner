@@ -15,8 +15,17 @@ class UserController extends Controller
 
     public function toggle(User $user)
     {
-        $user->premium = ! $user->premium;
-        $user->save();
+        if ($user->premium == 1) {
+            // add 1 month to premium_expire
+            $user->premium_expire = $user->premium_expire->addMonth();
+            $user->save();
+        } else {
+            // set premium_expire to now
+            $user->premium_expire = now()->addMonth();
+            $user->premium = 1;
+            $user->save();
+        }
+
         return back();
     }
 }

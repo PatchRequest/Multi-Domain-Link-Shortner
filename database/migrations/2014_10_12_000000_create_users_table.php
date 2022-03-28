@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('is_admin')->default(false);
             $table->boolean('premium')->default(false);
+            $table->timestamp('premium_expire')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

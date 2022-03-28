@@ -19,7 +19,7 @@
                     premium
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">toggle Premium</span>
+                    <span class="sr-only">Premium</span>
                 </th>
             </tr>
             </thead>
@@ -40,7 +40,7 @@
                     </td>
 
                     <td class="px-6 py-4">
-                        {{$user->premium ? 'Yes' : 'No'}}
+                        {{$user->premium_expire ? $user->premium_expire : 'No'}}
                     </td>
 
 
@@ -48,7 +48,7 @@
                         <form method="POST" action="{{route('users.toggle',$user->id)}}">
                             @csrf
                             @method('PATCH')
-                            <button type="submit"> toggle</button>
+                            <button type="submit"> Add 1 Month</button>
                         </form>
                     </td>
                 </tr>

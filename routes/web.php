@@ -23,6 +23,12 @@ Route::get('/', function () {
 Route::domain('geheim.gg')->group(function () {
 
     Route::get('/dashboard', function () {
+
+        if(auth()->user()->premium_expire < now()){
+            auth()->user()->premium = false;
+            auth()->user()->save();
+        }
+
         if(auth()->user()->premium ) {
             $domains = Domain::all();
         }else {
