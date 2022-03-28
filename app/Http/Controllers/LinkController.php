@@ -104,10 +104,10 @@ class LinkController extends Controller
             $click->link_id = $link->id;
             $click->fingerprint = request()->header('User-Agent');
             $click->save();
-
+            // redirect to target
+            return redirect($link->target);
         }
-        // redirect to target
-        return redirect($link->target);
+        return redirect()->route('/');
 
     }
 }
