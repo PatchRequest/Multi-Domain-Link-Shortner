@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $admin = User::create([
             'name' => 'Admin',
             'email' => 'gunwalddr@gmail.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('fap9hbm@xqc7CTZ-dnf'),
             'is_admin' => true,
             'premium' => true]);
         $admin->save();
@@ -43,5 +43,6 @@ class DatabaseSeeder extends Seeder
             'subdomain' => false,
             'premium' => true,
         ]);
+        $domainThree->save();
     }
 }

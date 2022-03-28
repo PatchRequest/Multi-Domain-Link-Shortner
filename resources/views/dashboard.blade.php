@@ -30,11 +30,12 @@
 
 
                             <br>
+                        @if(auth()->user()->premium)
                             <div class="mb-6">
                                 <label for="shortcut" class="block mb-2 text-sm font-medium text-gray-900">Shortcut (Text after the /)</label>
                                 <input type="text" name="shortcut" id="shortcut" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required>
                             </div>
-
+                        @endif
 
                         <div class="mb-6">
                                 <label for="target" class="block mb-2 text-sm font-medium text-gray-900">Redirect Target</label>

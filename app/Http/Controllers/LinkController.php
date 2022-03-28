@@ -35,12 +35,23 @@ class LinkController extends Controller
         //
         $data = request()->validate([
             'domain_id' => 'required',
-            'shortcut' => 'required',
+
             'target' => 'required',
         ]);
         $domain = Domain::find($data['domain_id']);
         if((!auth()->user()->premium && $domain->premium) && !auth()->user()->is_admin) {
             return redirect()->route('Dashboard')->with('error', 'You need to upgrade your account to create premium links');
+        }
+        // get shortcut out of the request if not exists then set to random 6 chars
+        if(!request()->has('shortcut')) {
+            $data['shortcut'] = $this->generateRandomString(6);
+        }else {
+            if(!auth()->user()->premium){
+                $data['shortcut'] = $this->generateRandomString(6);
+            }else {
+                $data['shortcut'] = request()->shortcut;
+            }
+
         }
         $fullUrl = "http://" . $domain->domain . "/" . $data['shortcut'];
 
@@ -109,5 +120,15 @@ class LinkController extends Controller
         }
         return redirect("/");
 
+    }
+
+    function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }
