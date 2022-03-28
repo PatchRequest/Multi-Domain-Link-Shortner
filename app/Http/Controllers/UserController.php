@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -16,8 +17,9 @@ class UserController extends Controller
     public function toggle(User $user)
     {
         if ($user->premium == 1) {
-            dd($user->premium_expire);
-            $user->premium_expire = $date->addMonth();
+            $time = Carbon::createFromTimestamp($user->premium_expire);
+            $user->premium_expire = $time->addDays(30);
+
 
             $user->save();
         } else {
