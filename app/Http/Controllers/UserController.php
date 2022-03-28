@@ -17,7 +17,9 @@ class UserController extends Controller
     {
         if ($user->premium == 1) {
             // add 1 month to premium_expire
-            $user->premium_expire = $user->premium_expire->addMonth();
+            // timestamp from string
+            $user->premium_expire = strtotime('+1 month', $user->premium_expire)->addMonth();
+
             $user->save();
         } else {
             // set premium_expire to now
