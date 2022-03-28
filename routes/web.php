@@ -26,6 +26,7 @@ Route::domain('geheim.gg')->group(function () {
 
         if(auth()->user()->premium_expire < now()){
             auth()->user()->premium = false;
+            auht()->user()->premium_expire = null;
             auth()->user()->save();
         }
 

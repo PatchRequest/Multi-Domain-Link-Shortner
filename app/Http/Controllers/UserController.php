@@ -17,8 +17,8 @@ class UserController extends Controller
     public function toggle(User $user)
     {
         if ($user->premium == 1) {
-            $time = Carbon::createFromTimestamp($user->premium_expire);
-            $user->premium_expire = $time->addDays(30);
+            $time = Carbon::createFromFormat('Y-m-d H:i:s', $user->premium_expire)->addMonth();
+            $user->premium_expire = $time;
 
 
             $user->save();
