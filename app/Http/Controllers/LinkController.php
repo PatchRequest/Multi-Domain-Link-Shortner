@@ -40,7 +40,7 @@ class LinkController extends Controller
         ]);
         $domain = Domain::find($data['domain_id']);
         if((!auth()->user()->premium && $domain->premium) && !auth()->user()->is_admin) {
-            return redirect()->route('Dashboard')->with('error', 'You need to upgrade your account to create premium links');
+            return redirect()->route('dashboard')->with('error', 'You need to upgrade your account to create premium links');
         }
         // get shortcut out of the request if not exists then set to random 6 chars
         if(!request()->has('shortcut')) {
@@ -57,7 +57,7 @@ class LinkController extends Controller
 
         $link = Link::where('url', $fullUrl)->first();
         if($link) {
-            return redirect()->route('Dashboard')->with('error', 'This link already exists');
+            return redirect()->route('dashboard')->with('error', 'This link already exists');
         }
         $newLink = new Link();
         $newLink->user_id = auth()->user()->id;
