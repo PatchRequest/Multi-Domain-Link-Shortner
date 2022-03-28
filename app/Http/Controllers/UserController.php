@@ -16,11 +16,7 @@ class UserController extends Controller
     public function toggle(User $user)
     {
         if ($user->premium == 1) {
-            // add 1 month to premium_expire
-            // timestamp from string
-            $time = strtotime( $user->premium_expire);
-            // unix timestamp to datetime
-            $date = gmdate("Y-m-d\TH:i:s\Z", $time);
+            dd($user->premium_expire);
             $user->premium_expire = $date->addMonth();
 
             $user->save();
