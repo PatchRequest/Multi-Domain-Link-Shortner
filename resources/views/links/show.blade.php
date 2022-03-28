@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <h1 class="text-3xl">{{$link->url}}</h1>
     Clicks:
     <table class="w-full text-sm text-left text-gray-500 text-center">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
