@@ -107,7 +107,7 @@ class LinkController extends Controller
             // redirect to target
             return redirect($link->target);
         }
-        return redirect()->route('/');
+        return redirect("/");
 
     }
 }
